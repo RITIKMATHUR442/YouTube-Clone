@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './Upload.css'
+import './Upload.css';
+
 const Upload = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -11,6 +12,8 @@ const Upload = () => {
     const [video, setVideo] = useState(null);
     const [thumbnail, setThumbnail] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
+    const [loading, setLoading] = useState(false); // Loader state
+
     const navigate = useNavigate();
 
     const videoHandler = (e) => {
@@ -24,6 +27,7 @@ const Upload = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true); // Show loader
 
         const formData = new FormData();
         formData.append('title', title);
@@ -33,7 +37,7 @@ const Upload = () => {
         formData.append('video', video);
         formData.append('thumbnail', thumbnail);
 
-        axios.post('http://localhost:3000/video/upload', formData, {
+        axios.post('http://localhost:4000/video/upload', formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -46,6 +50,9 @@ const Upload = () => {
         .catch(err => {
             console.log(err);
             toast.error(err.response?.data?.error || 'An unexpected error occurred.');
+        })
+        .finally(() => {
+            setLoading(false); // Hide loader after upload
         });
     };
 
@@ -91,7 +98,10 @@ const Upload = () => {
                 <input onChange={thumbnailHandler} type='file' />
                 {imageUrl && <img className='thumbnail' src={imageUrl} alt='thumbnail' />}
 
-                <button type='submit'>Upload</button>
+                <button type='submit' disabled={loading}> 
+                    {loading ? 'Uploading...' : 'Upload'}
+                </button>
+                {loading && <div className='loader'></div>} {/* Loader */}
             </form>
         </div>
     );

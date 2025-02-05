@@ -1,89 +1,3 @@
-
-
-
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom'; // Import Link
-// import '../../App.css';
-
-// const MyVideos = () => {
-//   const navigate = useNavigate();
-//   const [videos, setVideos] = useState([]);
-
-//   useEffect(() => {
-//     getOwnVideo();
-//   }, []);
-//   const getOwnVideo = () => {
-//     axios
-//       .get('http://localhost:3000/video/own-video', {
-//         headers: {
-//           Authorization: 'Bearer ' + localStorage.getItem('token'),
-//         },
-//       })
-//       .then((res) => {
-//         console.log(res.data);
-//         setVideos(res.data.videos.reverse());
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
-
-//   return (
-//     <div className='my-videos-container'>
-//       <table className='videos-table'>
-//         <thead>
-//           <tr>
-//             <th>Videos</th>
-//             <th>Title</th>
-//             <th>Date</th>
-//             <th>Views</th>
-//             <th>Like vs Dislike</th>
-//             <th>Delete</th>
-//             <th>Edit</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {videos.map((video) => (
-//             <tr key={video._id}>
-//               <td>
-//                 <div onClick={()=>navigate('/Video', 
-//                   { state: 
-//                   { videoUrl: video.videoUrl, user_id: video.user_id, video 
-//                   } })}>
-//                   <img alt='thumbnail' src={video.thumbnailUrl} />
-//                 </div>
-//               </td>
-//               <td>
-
-//                 <div onClick={()=>navigate('/Video', {state:{video:video,  videoUrl: video.videoUrl,
-//                     user_id: video.user_id,}})}>
-//                         {video.tittle}
-//                 </div>
-//               </td>
-//               <td>{video.createdAt}</td>
-//               <td>{video.views}</td>
-//               <td>
-//                 {video.likes} / {video.dislikes}
-//               </td>
-//               <td>
-//                 <button>Delete</button>
-//               </td>
-//               <td>
-//                 <button>Edit</button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default MyVideos;
-
-
-
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -99,7 +13,7 @@ const MyVideos = () => {
 
   const getOwnVideo = () => {
     axios
-      .get('http://localhost:3000/video/own-video', {
+      .get('http://localhost:4000/video/own-video', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
         },
@@ -115,7 +29,7 @@ const MyVideos = () => {
   const handleDelete = (videoId) => {
     if (window.confirm('Are you sure you want to delete this video?')) {
       axios
-        .delete(`http://localhost:3000/video/${videoId}`, {
+        .delete(`http://localhost:4000/video/${videoId}`, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
@@ -141,7 +55,7 @@ const MyVideos = () => {
     if (newTitle && newDescription && newCategory && newTags) {
       axios
         .put(
-          `http://localhost:3000/video/${video._id}`,
+          `http://localhost:4000/video/${video._id}`,
           {
             title: newTitle,
             description: newDescription,
