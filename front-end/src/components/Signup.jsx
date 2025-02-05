@@ -56,7 +56,7 @@ const Signup = () => {
         <div className='main-wrapper'>
             <div className='wrapper-header'>
                 <img className='logo-image' src={logo} alt="Youtube Logo" />
-                <h2 className='c-name'>Our Tube</h2>
+                <h2 className='c-name'>MyTube</h2>
             </div>
             <form className='form-wrapper' onSubmit={submitHandler}>
                 <input onChange={(e) => { setChannelName(e.target.value); }} type='text' placeholder="Channel Name" required />
