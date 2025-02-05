@@ -12,6 +12,7 @@ const Signup = () => {
     const [phone, setPhone] = useState(''); 
     const [logos, setLogo] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
+    const [loading, setLoading] = useState(false);  // Added loading state
 
     const navigate = useNavigate();
 
@@ -25,6 +26,8 @@ const Signup = () => {
     // Submit handler to handle form submission
     const submitHandler = async (e) => {
         e.preventDefault();
+        
+        setLoading(true);  // Set loading state to true before the request
 
         // Create a FormData object to send data and file
         const formData = new FormData();
@@ -37,17 +40,18 @@ const Signup = () => {
         try {
             const res = await axios.post('http://localhost:3000/user/signup', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'                      }
+                    'Content-Type': 'multipart/form-data'                      
+                }
             })
             .then(res=>{
-                // console.log(res);
-            console.log(res.data);
-            navigate('/login'); 
-            toast("Account is created")
-        })
+                console.log(res.data);
+                setLoading(false);  // Set loading state to false after the request is complete
+                navigate('/login'); 
+                toast("Account is created");
+            })
         } catch (err) {
-            // console.log('Error:', err.response ? err.response.data : err); // Detailed error logging
-           console.log(err);
+            console.log(err);
+            setLoading(false);  // Set loading state to false if there is an error
             toast.error(err.response.data.error)
         }
     }
@@ -65,9 +69,11 @@ const Signup = () => {
                 <input onChange={(e) => { setPhone(e.target.value); }} type='text' placeholder="Phone" required />
                 <input onChange={fileHandler} type='file' required />
                {imageUrl && <img className='preview-image' alt="logo-image" src={imageUrl} />}
-                <button type='submit'>Submit</button>
-                <Link to= '/login'className='link'>Login with your Account</Link>
-
+                
+                {/* Display loader while loading */}
+                {loading ? <div className="loader"></div> : <button type='submit'>Submit</button>}
+                
+                <Link to='/login' className='link'>Login with your Account</Link>
             </form>
         </div>
     );

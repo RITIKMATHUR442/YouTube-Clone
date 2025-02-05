@@ -30,7 +30,7 @@ const Login = () => {
                 localStorage.setItem('logoUrl',res.data.logoUrl)
             
                 navigate('/dashboard')
-                toast("welcome to Our Tube")
+                toast("welcome to MyTube")
                 
             })
         } 
