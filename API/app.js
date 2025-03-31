@@ -10,16 +10,16 @@ const commentRoute = require('./routes/comment');
 const cors = require('cors'); 
 
 // ✅ Fix CORS Configuration
-const corsOptions = {
-    origin: ['https://you-tube-clone-43rz.vercel.app', 'https://you-tube-clone-o3nx.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow OPTIONS
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // Allows cookies/auth headers
-    optionsSuccessStatus: 200 // Fixes some browser issues
-};
-
+// const corsOptions = {
+//     origin: ['https://you-tube-clone-43rz.vercel.app', 'https://you-tube-clone-o3nx.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow OPTIONS
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true, // Allows cookies/auth headers
+//     optionsSuccessStatus: 200 // Fixes some browser issues
+// };
+app.use(cors());
 // ✅ Apply CORS before routes
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", req.headers.origin || '*');
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
