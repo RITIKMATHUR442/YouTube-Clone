@@ -73,7 +73,7 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:3000/video/all-video', {
+    fetch('https://you-tube-clone-o3nx.vercel.app/video/all-video', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
