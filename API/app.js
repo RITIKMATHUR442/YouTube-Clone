@@ -11,12 +11,14 @@ const cors = require('cors');
 
 // CORS Configuration
 const corsOptions = {
-    origin: '*', // Change '*' to a specific frontend URL if needed (e.g., 'http://localhost:3000')
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-app.use(cors(corsOptions));
+        origin: ['https://you-tube-clone-43rz.vercel.app', 'https://you-tube-clone-o3nx.vercel.app'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true // Allows cookies/auth headers
+    };
+    
+    app.use(cors(corsOptions)); // Apply CORS settings
+    
 
 const connectWithDatabase = async () => {
     try {
