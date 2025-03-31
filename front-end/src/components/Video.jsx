@@ -29,7 +29,7 @@
 
 //   const incrementView = async (videoId) => {
 //     try {
-//       const response = await axios.put(`http://localhost:4000/video/views/${videoId}`);
+//       const response = await axios.put(`http://localhost:3000/video/views/${videoId}`);
 //       if (response.status === 200) {
 //         setViews((prevViews) => prevViews + 1);
 //       }
@@ -43,7 +43,7 @@
 //   const fetchComments = async () => {
 //     try {
 //       const videoId = location.state.video._id;
-//       const response = await axios.get(`http://localhost:4000/comment/${videoId}`);
+//       const response = await axios.get(`http://localhost:3000/comment/${videoId}`);
 //       if (response.status === 200) {
 //         setComments(response.data.commentsList || []); // Ensure comments is always an array
 //       }
@@ -59,7 +59,7 @@
 //         try {
 //           const videoId = location.state.video._id;
 //           const response = await axios.put(
-//             `http://localhost:4000/comment/${editingCommentId}`,
+//             `http://localhost:3000/comment/${editingCommentId}`,
 //             { commentText: comment },
 //             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //           );
@@ -81,7 +81,7 @@
 //         try {
 //           const videoId = location.state.video._id;
 //           const response = await axios.post(
-//             `http://localhost:4000/comment/new-comment/${videoId}`,
+//             `http://localhost:3000/comment/new-comment/${videoId}`,
 //             { commentText: comment },
 //             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //           );
@@ -107,7 +107,7 @@
 //   const handleDeleteComment = async (index, commentId) => {
 //     try {
 //       const response = await axios.delete(
-//         `http://localhost:4000/comment/${commentId}`,
+//         `http://localhost:3000/comment/${commentId}`,
 //         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //       );
 
@@ -124,7 +124,7 @@
 //     try {
 //       const videoId = location.state.video._id;
 //       const response = await axios.put(
-//         `http://localhost:4000/video/like/${videoId}`,
+//         `http://localhost:3000/video/like/${videoId}`,
 //         {},
 //         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //       );
@@ -143,7 +143,7 @@
 //     try {
 //       const videoId = location.state.video._id;
 //       const response = await axios.put(
-//         `http://localhost:4000/video/dislike/${videoId}`,
+//         `http://localhost:3000/video/dislike/${videoId}`,
 //         {},
 //         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //       );
@@ -161,7 +161,7 @@
 //   const handleSubscribe = async () => {
 //     try {
 //       const response = await axios.post(
-//         `http://localhost:4000/user/subscribe/${location.state.user_id._id}`,
+//         `http://localhost:3000/user/subscribe/${location.state.user_id._id}`,
 //         {},
 //         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //       );
@@ -178,7 +178,7 @@
 //   const handleUnsubscribe = async () => {
 //     try {
 //       const response = await axios.post(
-//         `http://localhost:4000/user/unsubscribe/${location.state.user_id._id}`,
+//         `http://localhost:3000/user/unsubscribe/${location.state.user_id._id}`,
 //         {},
 //         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
 //       );
@@ -291,7 +291,7 @@ const Video = () => {
 
   const incrementView = async (videoId) => {
     try {
-      const response = await axios.put(`http://localhost:4000/video/views/${videoId}`);
+      const response = await axios.put(`http://localhost:3000/video/views/${videoId}`);
       if (response.status === 200) {
         setViews((prevViews) => prevViews + 1);
       }
@@ -303,7 +303,7 @@ const Video = () => {
   const fetchComments = async () => {
     try {
       const videoId = location.state.video._id;
-      const response = await axios.get(`http://localhost:4000/comment/${videoId}`);
+      const response = await axios.get(`http://localhost:3000/comment/${videoId}`);
       if (response.status === 200) {
         setComments(response.data.commentsList || []); // Ensure comments is always an array
       }
@@ -319,7 +319,7 @@ const Video = () => {
         try {
           const videoId = location.state.video._id;
           const response = await axios.put(
-            `http://localhost:4000/comment/${editingCommentId}`,
+            `http://localhost:3000/comment/${editingCommentId}`,
             { commentText: comment },
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
           );
@@ -341,7 +341,7 @@ const Video = () => {
         try {
           const videoId = location.state.video._id;
           const response = await axios.post(
-            `http://localhost:4000/comment/new-comment/${videoId}`,
+            `http://localhost:3000/comment/new-comment/${videoId}`,
             { commentText: comment },
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
           );
@@ -367,7 +367,7 @@ const Video = () => {
   const handleDeleteComment = async (index, commentId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/comment/${commentId}`,
+        `http://localhost:3000/comment/${commentId}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
 
@@ -384,7 +384,7 @@ const Video = () => {
     try {
       const videoId = location.state.video._id;
       const response = await axios.put(
-        `http://localhost:4000/video/like/${videoId}`,
+        `http://localhost:3000/video/like/${videoId}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -403,7 +403,7 @@ const Video = () => {
     try {
       const videoId = location.state.video._id;
       const response = await axios.put(
-        `http://localhost:4000/video/dislike/${videoId}`,
+        `http://localhost:3000/video/dislike/${videoId}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -421,7 +421,7 @@ const Video = () => {
   const handleSubscribe = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/user/subscribe/${location.state.user_id._id}`,
+        `http://localhost:3000/user/subscribe/${location.state.user_id._id}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -438,7 +438,7 @@ const Video = () => {
   const handleUnsubscribe = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/user/unsubscribe/${location.state.user_id._id}`,
+        `http://localhost:3000/user/unsubscribe/${location.state.user_id._id}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

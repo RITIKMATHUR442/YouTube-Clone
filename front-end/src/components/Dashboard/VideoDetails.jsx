@@ -26,7 +26,7 @@ function VideoDetails() {
 //   }
 
   useEffect(() => {
-    fetch('http://localhost:4000/video/all-video', {
+    fetch('http://localhost:3000/video/all-video', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

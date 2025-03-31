@@ -13,7 +13,7 @@ const MyVideos = () => {
 
   const getOwnVideo = () => {
     axios
-      .get('http://localhost:4000/video/own-video', {
+      .get('http://localhost:3000/video/own-video', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
         },
@@ -29,7 +29,7 @@ const MyVideos = () => {
   const handleDelete = (videoId) => {
     if (window.confirm('Are you sure you want to delete this video?')) {
       axios
-        .delete(`http://localhost:4000/video/${videoId}`, {
+        .delete(`http://localhost:3000/video/${videoId}`, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
@@ -55,7 +55,7 @@ const MyVideos = () => {
     if (newTitle && newDescription && newCategory && newTags) {
       axios
         .put(
-          `http://localhost:4000/video/${video._id}`,
+          `http://localhost:3000/video/${video._id}`,
           {
             title: newTitle,
             description: newDescription,

@@ -37,7 +37,7 @@ const Upload = () => {
         formData.append('video', video);
         formData.append('thumbnail', thumbnail);
 
-        axios.post('http://localhost:4000/video/upload', formData, {
+        axios.post('http://localhost:3000/video/upload', formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

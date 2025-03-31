@@ -38,7 +38,7 @@ const Signup = () => {
         formData.append('logo', logos);
 
         try {
-            const res = await axios.post('http://localhost:4000/user/signup', formData, {
+            const res = await axios.post('http://localhost:3000/user/signup', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'                      
                 }

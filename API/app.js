@@ -10,17 +10,30 @@ const commentRoute = require('./routes/comment')
 const cors = require('cors') 
 
 
-const connectWithDatabase = async () => {
+// const connectWithDatabase = async () => {
 
-try{
-        const res = await mongoose.connect(process.env.MONGO_URI);
-        console.log('Connected to database...');
-}
-catch(err)
-{
-        console.log(err);
-}
-}
+// try{
+//         const res = await mongoose.connect(`mongodb+srv://ritikmathur30:ritik@1234@cluster0.g3w2u7j.mongodb.net/`);
+//         console.log('Connected to database...');
+// }
+// catch(err)
+// {
+//         console.log(err);
+// }
+// }
+
+const connectWithDatabase = async () => {
+        try {
+            const res = await mongoose.connect(`mongodb+srv://ritikmathur30:ritik%401234@cluster0.g3w2u7j.mongodb.net/myDatabase?retryWrites=true&w=majority`, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            });
+            console.log('Connected to database...');
+        } catch (err) {
+            console.log('Database connection error:', err);
+        }
+    };
+    
 app.use(cors()); 
 app.use(bodyParser.json());
 
