@@ -9,20 +9,33 @@ const fileUpload = require('express-fileupload');
 const commentRoute = require('./routes/comment');
 const cors = require('cors'); 
 
-// CORS Configuration
+// ✅ Fix CORS Configuration
 const corsOptions = {
-        origin: ['https://you-tube-clone-43rz.vercel.app', 'https://you-tube-clone-o3nx.vercel.app'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: true // Allows cookies/auth headers
-    };
+    origin: ['https://you-tube-clone-43rz.vercel.app', 'https://you-tube-clone-o3nx.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow OPTIONS
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // Allows cookies/auth headers
+    optionsSuccessStatus: 200 // Fixes some browser issues
+};
+
+// ✅ Apply CORS before routes
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin || '*');
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
     
-    app.use(cors(corsOptions)); // Apply CORS settings
-    
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200); // Handle CORS preflight requests
+    }
+
+    next();
+});
 
 const connectWithDatabase = async () => {
     try {
-        const res = await mongoose.connect(`mongodb+srv://ritikmathur30:ritik%401234@cluster0.g3w2u7j.mongodb.net/myDatabase?retryWrites=true&w=majority`, {
+        const res = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
